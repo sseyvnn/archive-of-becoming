@@ -54,8 +54,18 @@ const entries = [
       mobile: { x: 0, w: 100 },
     },
   },
+  
   {
-    slug: 'digital-fashion-archive',
+    slug: 'interactive-runway',
+    number: '02',
+    title: 'Interactive Runway',
+    description: 'Gucci SS27 — Runway Blob Tracking',
+    to: '/project/interactive-runway',
+    thumbnail: {
+      type: 'image',
+      src: '/gucci-ss27.jpg',
+      alt: 'Gucci SS27 runway presentation',
+    },
     tone: '#cfcbc0',
     layout: {
       desktop: { x: 65, w: 27, pull: -16.5, label: 'below' },
@@ -63,6 +73,7 @@ const entries = [
       mobile: { x: 8, w: 92 },
     },
   },
+
   {
     slug: 'virtual-styling-environment',
     tone: '#c4c1b8',
