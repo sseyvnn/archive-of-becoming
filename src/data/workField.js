@@ -54,10 +54,17 @@ const entries = [
       mobile: { x: 0, w: 100 },
     },
   },
-  {
-    slug: 'intaractive-runway',
-    tone: '#cfcbc0',
-    layout: {
+  
+{
+  slug: 'interactive-runway',
+  thumbnail: {
+    type: 'image',
+    src: '/GUCCI-SS27.jpg',
+    alt: 'Gucci SS27 runway look',
+  },
+  tone: '#cfcbc0',
+  layout: {
+
       desktop: { x: 65, w: 27, pull: -16.5, label: 'below' },
       tablet: { x: 34, w: 60 },
       mobile: { x: 8, w: 92 },
