@@ -1,3 +1,4 @@
+
 /**
  * ARCHIVE OF BECOMING — project data.
  *
@@ -200,37 +201,23 @@ export const projects = [
       { id: 'p1-interface', type: 'image', src: rfsInterface, alt: 'Placeholder — interface screen from Remote Fitting System.', aspectRatio: '16:9' },
     ],
   },
-  
-{
-  id: 'project-02',
-  number: '02',
-  title: 'Interactive Runway',
-  slug: 'interactive-runway',
-  shortDescription: 'Gucci SS27 — Runway Blob Tracking',
-  fullDescription:
-    'An interactive runway tracking project exploring the intersection of fashion and technology. Using TouchDesigner, blob tracking and computer vision, the system follows movement on the Gucci SS27 runway and identifies individual garments throughout the walk.',
-  year: 2026,
-  role: 'Creative Technologist',
-  disciplines: ['Creative Coding', 'Fashion Technology'],
-  tools: ['TouchDesigner', 'Computer Vision', 'Blob Tracking'],
-  landingMedia: [
-    {
-      id: 'p2-runway',
-      type: 'image',
-      src: '/gucci-ss27.jpg',
-      alt: 'Gucci SS27 runway presentation',
-      aspectRatio: '16:9',
-    },
-    {
-      id: 'p2-tracking',
-      type: 'image',
-      src: '/gucci-ss27.jpg',
-      alt: 'Gucci SS27 runway tracking project',
-      aspectRatio: '16:9',
-    },
-  ],
-},
-
+  {
+    id: 'project-02',
+    number: '02',
+    title: 'Digital Fashion Archive',
+    slug: 'digital-fashion-archive',
+    shortDescription: 'Interactive fashion archive',
+    fullDescription:
+      "An interactive system for digitizing and presenting a stylist/designer's body of work beyond a traditional portfolio.",
+    year: 2026,
+    role: 'Creative Technologist',
+    disciplines: ['Digital Archive', 'Interaction Design'],
+    tools: ['Blender', 'React', 'Figma', '3D/Web'],
+    landingMedia: [
+      { id: 'p2-archive-wall', type: 'image', src: dfaArchiveWall, alt: 'Placeholder — archive wall view from Digital Fashion Archive.', aspectRatio: '4:3' },
+      { id: 'p2-object-01', type: 'image', src: dfaObject01, alt: 'Placeholder — archived object 01 from Digital Fashion Archive.', aspectRatio: '1:1' },
+    ],
+  },
   {
     id: 'project-03',
     number: '03',
@@ -362,38 +349,18 @@ const boardContent = {
       model: '[Placeholder] Process note reserved for CLO3D simulation and body-model development stages.',
     },
   },
-  '
-'project-02': {
-  media: {
-    final: {
-      src: '/gucci-ss27.jpg',
-      alt: 'Gucci SS27 runway tracking final output',
-      aspectRatio: '16:9',
-      caption: 'Runway tracking / final output',
+  'project-02': {
+    media: {
+      final: { src: dfaArchiveWall, alt: 'Placeholder — final archive wall output.', aspectRatio: '4:3', caption: 'Archive wall' },
+      prototype: { src: dfaObject01, alt: 'Placeholder — early archived object prototype.', aspectRatio: '1:1', caption: 'Object study 01' },
+      interface: { src: dfaObject02, alt: 'Placeholder — archive interface study.', aspectRatio: '1:1', caption: 'Object study 02' },
     },
-    prototype: {
-      src: '/gucci-ss27.jpg',
-      alt: 'Runway tracking prototype',
-      aspectRatio: '16:9',
-      caption: 'Blob tracking prototype',
-    },
-    interface: {
-      src: '/gucci-ss27.jpg',
-      alt: 'TouchDesigner tracking interface',
-      aspectRatio: '16:9',
-      caption: 'TouchDesigner / interface',
+    notes: {
+      research: '[Placeholder] Research into archival systems and how a body of work can be presented beyond a static portfolio.',
+      experiment: '[Placeholder] Testing digitization workflows for physical and digital work samples.',
+      model: '[Placeholder] Process note reserved for information-architecture and archive-structure development.',
     },
   },
-  notes: {
-    research:
-      'Exploring how computer vision and real-time tracking can be used to document runway movement and identify individual garments.',
-    experiment:
-      'Experimenting with blob tracking, regions of interest and garment labels to follow the model throughout the Gucci SS27 runway walk.',
-    model:
-      'Developed in TouchDesigner using tracking regions, image processing and text overlays to connect runway movement with garment identification.',
-  },
-},
-
   'project-03': {
     media: {
       final: { type: 'video', sources: [{ src: vseMotionWebm, type: 'video/webm' }, { src: vseMotionMp4, type: 'video/mp4' }], poster: vseMotionPoster, alt: 'Placeholder — final motion study output.', aspectRatio: '16:9', caption: 'Motion study' },
