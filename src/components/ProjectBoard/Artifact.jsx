@@ -30,7 +30,7 @@ export default function Artifact({ artifact, onExpand, mobileOrder }) {
         <button
           type="button"
           className="board-artifact-media-frame"
-          style={{ aspectRatio: artifact.aspectRatio ? artifact.aspectRatio.replace(':', ' / ') : '1 / 1' }}
+          
           onClick={() => onExpand(artifact)}
           data-cursor="view"
           aria-label={`Expand ${artifact.title.toLowerCase()}`}
