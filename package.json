@@ -1,0 +1,24 @@
+{
+  "name": "seyvn",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Archive of Becoming — SEYVN creative technology portfolio.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "generate:placeholders": "node scripts/generate-placeholders.mjs"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.1.0",
+    "framer-motion": "^11.11.9",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.2",
+    "vite": "^5.4.9"
+  }
+}

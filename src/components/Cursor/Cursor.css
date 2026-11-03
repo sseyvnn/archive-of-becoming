@@ -1,0 +1,48 @@
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: var(--color-text);
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--duration-fast) linear, width var(--duration-fast) var(--ease-editorial),
+    height var(--duration-fast) var(--ease-editorial), background var(--duration-fast) linear,
+    border-radius var(--duration-fast) var(--ease-editorial);
+}
+
+.custom-cursor.is-visible {
+  opacity: 1;
+}
+
+.custom-cursor.has-label {
+  width: auto;
+  height: auto;
+  padding: 6px 10px;
+  margin-left: 14px;
+  margin-top: 14px;
+  border-radius: 999px;
+  background: var(--color-text);
+  white-space: nowrap;
+}
+
+.custom-cursor-label {
+  color: var(--color-bg);
+  font-size: 11px;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Native cursor stays put unless the dot is actually active, and even
+   then only over the document body — form fields, if any are added
+   later, should keep a normal text cursor via their own CSS. */
+body:has(.custom-cursor.is-visible) {
+  cursor: none;
+}

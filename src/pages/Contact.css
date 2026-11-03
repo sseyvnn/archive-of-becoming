@@ -1,0 +1,90 @@
+.contact-page {
+  padding-top: clamp(40px, 6vw, 72px);
+  padding-bottom: clamp(56px, 8vw, 96px);
+  max-width: 780px;
+}
+
+.contact-page .page-kicker {
+  display: block;
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.contact-section {
+  padding-top: clamp(20px, 2.5vw, 28px);
+  border-top: 1px solid var(--color-line);
+  margin-bottom: clamp(32px, 4vw, 44px);
+}
+
+.contact-section .section-label {
+  margin-bottom: 12px;
+}
+
+.contact-open-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 24px;
+  row-gap: 6px;
+}
+
+.contact-open-item {
+  font-size: var(--text-reference-title);
+  color: var(--color-text);
+}
+
+.contact-channels {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-value {
+  font-size: var(--text-statement);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+a.contact-value {
+  border-bottom: 1px solid var(--color-line-strong);
+  padding-bottom: 2px;
+  width: fit-content;
+  transition: opacity var(--duration-base) var(--ease-editorial);
+}
+
+a.contact-value:hover {
+  opacity: 0.6;
+}
+
+.contact-value.is-placeholder {
+  color: var(--color-text-faint);
+}
+
+.contact-placeholder-tag {
+  font-size: 9px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  border: 1px solid var(--color-line-strong);
+  padding: 2px 6px;
+  vertical-align: middle;
+}
+
+.contact-note {
+  font-size: var(--text-reference-desc);
+  color: var(--color-text-muted);
+  margin-top: 6px;
+}
+
+@media (max-width: 520px) {
+  .contact-open-list {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-value {
+    font-size: clamp(16px, 5vw, 22px);
+  }
+}

@@ -1,0 +1,56 @@
+/*
+  ARCHIVE OF BECOMING — global design tokens.
+  Change values here to restyle the whole site consistently.
+  Colors get almost all of their vibrancy from project imagery —
+  keep this palette neutral and quiet.
+*/
+
+:root {
+  /* ---------- color ---------- */
+  --color-bg: #f2f0ea;            /* warm paper / off-white — never pure white */
+  --color-bg-raised: #ece9e1;     /* very slightly deeper paper, for hairline separation */
+  --color-text: #111111;          /* primary text */
+  --color-text-muted: #6b675f;    /* secondary / muted warm gray */
+  --color-text-faint: #a29d92;    /* tertiary, for the quietest metadata */
+  --color-line: rgba(17, 17, 17, 0.12);   /* hairline dividers */
+  --color-line-strong: rgba(17, 17, 17, 0.22);
+  --color-media-muted-filter: grayscale(0.35) contrast(0.96) brightness(0.97);
+  --color-focus: #111111;
+
+  /* ---------- layout ---------- */
+  --page-margin: 3vw;             /* outer margin used by the image field */
+  --content-max: 1600px;
+
+  /* Landing field + project board share this coordinate system: a fine
+     column grid with explicit per-item placement (not auto-flow), so the
+     composition can carry real negative space instead of packing solid. */
+  --board-columns: 24;
+  --board-row-unit: 12px;
+  --board-columns-mobile: 6;
+  --board-row-unit-mobile: 10px;
+  --field-gap: 10px;
+  --field-gap-mobile: 8px;
+
+  /* ---------- rhythm ---------- */
+  --space-negative-lg: clamp(72px, 10vw, 150px); /* space after image field */
+  --space-negative-md: clamp(56px, 7vw, 110px);  /* space before index */
+  --space-section-pad: clamp(20px, 3vw, 40px);
+
+  /* ---------- radius ---------- */
+  --radius-none: 0px;
+  --radius-hair: 1px; /* "almost imperceptible" radius, used sparingly */
+
+  /* ---------- motion ---------- */
+  --ease-editorial: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --duration-fast: 160ms;
+  --duration-base: 320ms;
+  --duration-slow: 620ms;
+  --marquee-duration: 42s;
+
+  /* ---------- z-index ---------- */
+  --z-cursor: 60;
+  --z-marquee: 20;
+}
+
+/* Reduced motion: the marquee freezes on a single frame instead of looping.
+   (globals.css also forces near-zero animation durations site-wide.) */

@@ -1,0 +1,73 @@
+/*
+  ARCHIVE OF BECOMING — typographic system.
+
+  One voice only, deliberately: IBM Plex Mono, archival and documentary.
+  Hierarchy is built with size, weight, case, tracking, line-height and
+  opacity — never by switching typefaces. This is what keeps the site
+  reading as an archive/catalogue rather than a design-agency portfolio.
+*/
+
+:root {
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  /* kept as an alias so nothing referencing --font-sans breaks; both are
+     the same archival monospace now. */
+  --font-sans: var(--font-mono);
+
+  /* fluid type scale — restrained, archival, nothing oversized */
+  --text-marquee: clamp(12px, 1vw, 15px);
+  --text-index: clamp(16px, 1.7vw, 21px);
+  --text-index-number: clamp(11px, 0.85vw, 13px);
+  --text-reference-title: clamp(12.5px, 1.05vw, 14px);
+  --text-reference-desc: clamp(11px, 0.85vw, 12px);
+  --text-reference-number: clamp(10.5px, 0.8vw, 12px);
+  --text-caption: 10.5px;
+  --text-footer: 11px;
+  --text-body: 13.5px;
+  --text-statement: clamp(18px, 2.6vw, 30px);
+  --text-section-label: clamp(10.5px, 0.85vw, 12px);
+
+  --tracking-wide: 0.04em;
+  --tracking-wider: 0.09em;
+  --tracking-tight: -0.005em;
+
+  --leading-tight: 1.15;
+  --leading-normal: 1.6;
+  --leading-statement: 1.42;
+}
+
+body {
+  font-family: var(--font-mono);
+  font-size: var(--text-body);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+.upper {
+  text-transform: uppercase;
+}
+
+.section-label {
+  font-size: var(--text-section-label);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

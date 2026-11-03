@@ -1,0 +1,253 @@
+/*
+  The project's process board.
+
+  Desktop: one spatial composition. Every .board-artifact is positioned
+  absolutely inside .project-board using the x/y/width percentages already
+  authored in data/projects.js (see BOARD_SLOTS) — no grid, no auto-flow,
+  because the whole point is a hand-composed layout with real negative
+  space between related fragments, like a research wall.
+
+  Mobile: the exact same DOM nodes, re-flowed by .project-board-artifacts
+  switching to a column flex layout and each .board-artifact taking
+  `order: var(--mobile-order)` instead of an absolute position — an
+  intentional vertical editorial sequence, not a shrunk board.
+*/
+
+.project-board {
+  position: relative;
+  width: 100%;
+  /* An explicit (not min-) height so the percentage `top`/`height` values
+     on .board-artifact below have a definite containing-block height to
+     resolve against — with only min-height here, every child's
+     `top: calc(var(--y) * 1%)` would resolve against an indefinite height
+     and collapse to 0, stacking every artifact at the top. */
+  height: clamp(1100px, 82vw, 1600px);
+  margin-top: clamp(28px, 4vw, 48px);
+  margin-bottom: clamp(56px, 7vw, 96px);
+}
+
+.project-board-artifacts {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.board-connections {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.board-connections line {
+  stroke: var(--color-line-strong);
+  stroke-width: 1;
+}
+
+.board-artifact {
+  position: absolute;
+  left: calc(var(--x) * 1%);
+  top: calc(var(--y) * 1%);
+  width: calc(var(--w) * 1%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.board-artifact-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: var(--text-reference-number);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-faint);
+}
+
+.board-artifact-title {
+  color: var(--color-text-muted);
+}
+
+.board-artifact-media-frame {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-bg-raised);
+  text-align: left;
+}
+
+.board-artifact-visual {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0) opacity(1);
+  transition: filter var(--duration-slow) var(--ease-editorial),
+    opacity var(--duration-slow) var(--ease-editorial);
+}
+
+.board-artifact-media-frame:hover .board-artifact-visual,
+.board-artifact-media-frame:focus-visible .board-artifact-visual {
+  filter: var(--color-media-muted-filter);
+  opacity: 0.9;
+}
+
+.board-artifact-media-caption {
+  font-size: var(--text-caption);
+  color: var(--color-text-faint);
+  max-width: 34ch;
+}
+
+.board-artifact-text {
+  border-top: 1px solid var(--color-line);
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.board-artifact-caption {
+  font-size: var(--text-reference-desc);
+  color: var(--color-text-muted);
+}
+
+.board-artifact-body {
+  font-size: var(--text-reference-desc);
+  color: var(--color-text);
+  line-height: var(--leading-normal);
+  max-width: 40ch;
+}
+
+/* The board's "info" artifact is one fragment among the others, not a
+   header — it gets a hairline frame so it still reads as a distinct card
+   of information, but no elevation/shadow/color to make it dominant. */
+.board-artifact--info {
+  border: 1px solid var(--color-line);
+  padding: 14px;
+}
+
+.board-artifact--info .board-artifact-caption {
+  color: var(--color-text);
+  line-height: var(--leading-normal);
+}
+
+@media (max-width: 720px) {
+  .project-board {
+    height: auto;
+    margin-top: clamp(24px, 6vw, 36px);
+  }
+
+  .board-connections {
+    display: none;
+  }
+
+  .project-board-artifacts {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(36px, 9vw, 56px);
+  }
+
+  .board-artifact {
+    position: static;
+    width: 100% !important;
+    order: var(--mobile-order);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board-artifact-visual {
+    transition: none;
+  }
+}
+
+/*
+  Lightbox — restrained click-to-expand for image/video artifacts. No zoom
+  controls, no infinite canvas: a quiet fade to a centered frame.
+*/
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-cursor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5vw;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(17, 17, 17, 0.82);
+  animation: lightbox-fade var(--duration-base) var(--ease-editorial);
+}
+
+.lightbox-frame {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: min(90vw, 1100px);
+  max-height: 90vh;
+  animation: lightbox-fade var(--duration-base) var(--ease-editorial);
+}
+
+.lightbox-media {
+  max-width: 100%;
+  max-height: 74vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  background: var(--color-bg-raised);
+}
+
+.lightbox-caption {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: var(--text-reference-desc);
+  color: #f2f0ea;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -34px;
+  right: 0;
+  font-size: var(--text-reference-number);
+  letter-spacing: var(--tracking-wider);
+  color: #f2f0ea;
+  border-bottom: 1px solid rgba(242, 240, 234, 0.6);
+  padding-bottom: 2px;
+}
+
+.lightbox-close:hover {
+  opacity: 0.7;
+}
+
+@keyframes lightbox-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox-backdrop,
+  .lightbox-frame {
+    animation: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .lightbox-close {
+    top: auto;
+    bottom: -34px;
+    right: 0;
+  }
+}

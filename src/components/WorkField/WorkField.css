@@ -1,0 +1,208 @@
+/*
+  The editorial thumbnail field.
+
+  Every entry is placed from its own data (see data/workField.js) with three
+  custom properties — --x (left offset), --w (width) and --pull (vertical
+  offset from the previous entry's bottom edge). All are in "cqw": percent
+  of this section's own width, so the whole composition scales as one piece
+  and the 16:9 thumbnails keep their proportions. Entries are in normal
+  flow (not absolutely positioned), so they can never overlap vertically
+  unless a negative --pull deliberately slides one up beside its neighbour.
+*/
+
+.work-field {
+  container-type: inline-size;
+  width: 100%;
+  padding: clamp(28px, 4vw, 48px) var(--page-margin) 0;
+}
+
+.work-item {
+  --ox: var(--x);
+  --ow: var(--w);
+  --label-gap: clamp(14px, 1.5cqw, 24px);
+
+  position: relative;
+  display: block;
+  width: calc(var(--ow) * 1cqw);
+  margin-left: calc(var(--ox) * 1cqw);
+  margin-top: calc(var(--pull) * 1cqw);
+  color: var(--color-text);
+}
+
+/* ---------- thumbnail (always 16:9) ---------- */
+
+.work-thumb {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--color-bg-raised);
+  transition: opacity var(--duration-slow) var(--ease-editorial);
+}
+
+.work-thumb-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.work-thumb-note {
+  position: absolute;
+  left: 10px;
+  bottom: 8px;
+  font-size: 9.5px;
+  letter-spacing: var(--tracking-wider);
+  color: rgba(17, 17, 17, 0.32);
+}
+
+/* ---------- label ---------- */
+
+.work-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.work-label-head {
+  display: block;
+  font-size: clamp(12px, 1.02vw, 15px);
+  letter-spacing: var(--tracking-wide);
+  line-height: 1.25;
+}
+
+.work-label-num,
+.work-label-sep {
+  color: var(--color-text-muted);
+  font-size: inherit;
+}
+
+.work-label-sep {
+  margin: 0 0.6em;
+}
+
+.work-label-title {
+  color: var(--color-text);
+  font-size: inherit;
+}
+
+.work-label-desc {
+  font-size: clamp(11px, 0.88vw, 13px);
+  line-height: 1.4;
+  color: var(--color-text-muted);
+}
+
+.work-label-arrow {
+  display: inline-block;
+  width: fit-content;
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1;
+  margin-top: 4px;
+  transition: transform var(--duration-base) var(--ease-editorial);
+}
+
+.work-item:hover .work-label-arrow,
+.work-item:focus-visible .work-label-arrow {
+  transform: translate(2px, -2px);
+}
+
+.work-item.is-static .work-label-arrow {
+  color: var(--color-text-faint);
+}
+
+/* label BELOW the thumbnail */
+.work-item--below .work-label {
+  margin-top: clamp(10px, 1cqw, 16px);
+}
+
+/* label BESIDE the thumbnail (desktop only): vertically centered on it,
+   hanging off the right or left edge so it never adds to the item's height */
+.work-item--right .work-label,
+.work-item--left .work-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: max-content;
+  max-width: 17cqw;
+}
+
+.work-item--right .work-label {
+  left: calc(100% + var(--label-gap));
+}
+
+.work-item--left .work-label {
+  right: calc(100% + var(--label-gap));
+}
+
+/* ---------- hover: quiet — everything else just recedes a little ---------- */
+
+.work-item.is-dimmed .work-thumb {
+  opacity: 0.55;
+}
+
+.work-item.is-dimmed .work-label {
+  opacity: 0.6;
+}
+
+.work-label {
+  transition: opacity var(--duration-slow) var(--ease-editorial);
+}
+
+/* ---------- tablet: smaller offsets, labels always beneath ---------- */
+
+@media (max-width: 1024px) {
+  .work-item {
+    --ox: var(--x-t);
+    --ow: var(--w-t);
+    margin-top: clamp(36px, 7cqw, 72px);
+  }
+
+  .work-item:first-child {
+    margin-top: 0;
+  }
+
+  .work-item--right .work-label,
+  .work-item--left .work-label {
+    position: static;
+    transform: none;
+    width: auto;
+    max-width: 34ch;
+    margin-top: clamp(10px, 1.4cqw, 16px);
+  }
+}
+
+/* ---------- mobile: clean, mostly single column ---------- */
+
+@media (max-width: 640px) {
+  .work-field {
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+
+  .work-item {
+    --ox: var(--x-m);
+    --ow: var(--w-m);
+    margin-top: clamp(32px, 9cqw, 48px);
+  }
+
+  .work-item:first-child {
+    margin-top: 0;
+  }
+
+  .work-label-head {
+    font-size: 13px;
+  }
+
+  .work-label-desc {
+    font-size: 11.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-thumb,
+  .work-label,
+  .work-label-arrow {
+    transition: none;
+  }
+}

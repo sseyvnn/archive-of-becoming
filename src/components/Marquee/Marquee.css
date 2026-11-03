@@ -1,0 +1,53 @@
+.marquee {
+  width: 100%;
+  height: clamp(26px, 2.2vw, 32px);
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-line);
+  display: flex;
+  align-items: center;
+  background: var(--color-bg);
+  position: relative;
+  z-index: var(--z-marquee);
+}
+
+.marquee-rail {
+  display: flex;
+  width: max-content;
+  /* duration is overridden inline from the measured loop length (see
+     Marquee.jsx) so speed is constant; this value is only the fallback. */
+  animation: marquee-scroll var(--marquee-duration) linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.marquee-item {
+  font-size: var(--text-marquee);
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  /* whitespace-only gap between repetitions — no dash/slash/dot/arrow */
+  padding-right: 3.5em;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-rail {
+    animation: none;
+    transform: none;
+  }
+}
