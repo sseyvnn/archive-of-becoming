@@ -124,17 +124,23 @@ function buildBoard(project, { media, notes }) {
       aspectRatio: media.final.aspectRatio,
       ...BOARD_SLOTS.final,
     },
-    {
-      id: `${project.id}-prototype`,
-      number: `${project.number}.02`,
-      type: 'image',
-      title: 'PROTOTYPE',
-      caption: media.prototype.caption,
-      src: media.prototype.src,
-      alt: media.prototype.alt,
-      aspectRatio: media.prototype.aspectRatio,
-      ...BOARD_SLOTS.prototype,
-    },
+    
+ 
+{
+  id: `${project.id}-prototype`,
+  number: `${project.number}.02`,
+  type: media.prototype.type ?? 'image',
+  title: 'PROTOTYPE',
+  caption: media.prototype.caption,
+  src: media.prototype.src,
+  poster: media.prototype.poster,
+  sources: media.prototype.sources,
+  alt: media.prototype.alt,
+  aspectRatio: media.prototype.aspectRatio,
+  ...BOARD_SLOTS.prototype,
+},
+
+
     {
       id: `${project.id}-research`,
       number: `${project.number}.03`,
@@ -153,17 +159,21 @@ function buildBoard(project, { media, notes }) {
       body: notes.experiment,
       ...BOARD_SLOTS.experiment,
     },
-    {
-      id: `${project.id}-interface`,
-      number: `${project.number}.05`,
-      type: 'image',
-      title: 'INTERFACE',
-      caption: media.interface.caption,
-      src: media.interface.src,
-      alt: media.interface.alt,
-      aspectRatio: media.interface.aspectRatio,
-      ...BOARD_SLOTS.interface,
-    },
+    
+{
+  id: `${project.id}-interface`,
+  number: `${project.number}.05`,
+  type: media.interface.type ?? 'image',
+  title: 'INTERFACE',
+  caption: media.interface.caption,
+  src: media.interface.src,
+  poster: media.interface.poster,
+  sources: media.interface.sources,
+  alt: media.interface.alt,
+  aspectRatio: media.interface.aspectRatio,
+  ...BOARD_SLOTS.interface,
+},
+
     {
       id: `${project.id}-model`,
       number: `${project.number}.06`,
@@ -201,23 +211,37 @@ export const projects = [
       { id: 'p1-interface', type: 'image', src: rfsInterface, alt: 'Placeholder — interface screen from Remote Fitting System.', aspectRatio: '16:9' },
     ],
   },
-  {
-    id: 'project-02',
-    number: '02',
-    title: 'Digital Fashion Archive',
-    slug: 'digital-fashion-archive',
-    shortDescription: 'Interactive fashion archive',
-    fullDescription:
-      "An interactive system for digitizing and presenting a stylist/designer's body of work beyond a traditional portfolio.",
-    year: 2026,
-    role: 'Creative Technologist',
-    disciplines: ['Digital Archive', 'Interaction Design'],
-    tools: ['Blender', 'React', 'Figma', '3D/Web'],
-    landingMedia: [
-      { id: 'p2-archive-wall', type: 'image', src: dfaArchiveWall, alt: 'Placeholder — archive wall view from Digital Fashion Archive.', aspectRatio: '4:3' },
-      { id: 'p2-object-01', type: 'image', src: dfaObject01, alt: 'Placeholder — archived object 01 from Digital Fashion Archive.', aspectRatio: '1:1' },
-    ],
-  },
+  
+{
+  id: 'project-02',
+  number: '02',
+  title: 'Interactive Runway',
+  slug: 'interactive-runway',
+  shortDescription: 'Gucci SS27 — Runway Blob Tracking',
+  fullDescription:
+    'A creative coding project using TouchDesigner to track runway movement and identify individual garments.',
+  year: 2026,
+  role: 'Creative Technologist',
+  disciplines: ['Creative Coding', 'Fashion Technology'],
+  tools: ['TouchDesigner', 'Computer Vision', 'Python'],
+  landingMedia: [
+    {
+      id: 'p2-gucci-cover',
+      type: 'image',
+      src: '/GUCCI-SS27.jpg',
+      alt: 'Gucci SS27 runway look',
+      aspectRatio: '16:9',
+    },
+    {
+      id: 'p2-gucci-detail',
+      type: 'image',
+      src: '/GUCCI-SS27.jpg',
+      alt: 'Gucci SS27 runway look',
+      aspectRatio: '16:9',
+    },
+  ],
+},
+
   {
     id: 'project-03',
     number: '03',
@@ -349,18 +373,50 @@ const boardContent = {
       model: '[Placeholder] Process note reserved for CLO3D simulation and body-model development stages.',
     },
   },
-  'project-02': {
-    media: {
-      final: { src: dfaArchiveWall, alt: 'Placeholder — final archive wall output.', aspectRatio: '4:3', caption: 'Archive wall' },
-      prototype: { src: dfaObject01, alt: 'Placeholder — early archived object prototype.', aspectRatio: '1:1', caption: 'Object study 01' },
-      interface: { src: dfaObject02, alt: 'Placeholder — archive interface study.', aspectRatio: '1:1', caption: 'Object study 02' },
+  
+'project-02': {
+  media: {
+    final: {
+      type: 'video',
+      sources: [
+        { src: '/gucci-final.mp4', type: 'video/mp4' },
+      ],
+      poster: '/GUCCI-SS27.jpg',
+      alt: 'Gucci SS27 final runway tracking',
+      aspectRatio: '16:9',
+      caption: 'Gucci SS27 / Final Output',
     },
-    notes: {
-      research: '[Placeholder] Research into archival systems and how a body of work can be presented beyond a static portfolio.',
-      experiment: '[Placeholder] Testing digitization workflows for physical and digital work samples.',
-      model: '[Placeholder] Process note reserved for information-architecture and archive-structure development.',
+    prototype: {
+      type: 'video',
+      sources: [
+        { src: '/gucci-prototype.mp4', type: 'video/mp4' },
+      ],
+      poster: '/GUCCI-SS27.jpg',
+      alt: 'Gucci blob tracking prototype',
+      aspectRatio: '16:9',
+      caption: 'Blob Tracking / Prototype',
+    },
+    interface: {
+      type: 'video',
+      sources: [
+        { src: '/gucci-interface.mp4', type: 'video/mp4' },
+      ],
+      poster: '/GUCCI-SS27.jpg',
+      alt: 'TouchDesigner interface and live tracking data',
+      aspectRatio: '16:9',
+      caption: 'TouchDesigner / Interface',
     },
   },
+  notes: {
+    research:
+      'Exploring how computer vision can track runway movement and identify individual garments.',
+    experiment:
+      'Testing blob detection, tracking regions, and garment labels throughout the runway walk.',
+    model:
+      'A TouchDesigner system combining Python, image processing, and real-time tracking data.',
+  },
+},
+
   'project-03': {
     media: {
       final: { type: 'video', sources: [{ src: vseMotionWebm, type: 'video/webm' }, { src: vseMotionMp4, type: 'video/mp4' }], poster: vseMotionPoster, alt: 'Placeholder — final motion study output.', aspectRatio: '16:9', caption: 'Motion study' },
