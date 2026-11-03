@@ -55,7 +55,7 @@ const entries = [
     },
   },
   {
-    slug: 'digital-fashion-archive',
+    slug: 'intaractive-runway',
     tone: '#cfcbc0',
     layout: {
       desktop: { x: 65, w: 27, pull: -16.5, label: 'below' },
