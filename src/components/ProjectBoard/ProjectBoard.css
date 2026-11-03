@@ -69,9 +69,11 @@
   color: var(--color-text-muted);
 }
 
+
 .board-artifact-media-frame {
   display: block;
   width: 100%;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: var(--color-bg-raised);
   text-align: left;
